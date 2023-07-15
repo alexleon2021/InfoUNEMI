@@ -9,8 +9,20 @@
 </head>
 <body>
     <h1>infoUNEMI</h1>
-    <h3>Ver Bloques</h3>
+    <h1>Lista de bloques</h1>
 
+    <ul>
+      {% for bloque in bloques %}
+        <li>
+          <h2>{{ bloque.nombre }}</h2>
+          <p>Funciones: {{ bloque.funciones }}</p>
+          <!-- Otros campos del bloque... -->
+          
+          <a href="{% url 'bloque' bloque_id=bloque.id %}" class="btn">Ver Bloque</a>
+        </li>
+      {% endfor %}
+    </ul>
+    
 
 
 

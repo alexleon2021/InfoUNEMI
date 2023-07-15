@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
 
-<h1> {{bloque.nombre}} </h1>
-<h1>Bloque -</h1>
+{% block title %}
+{{ bloque.nombre }} 
+{% endblock %}
+
+{% block contenido %}
+    <h1>{{ bloque.nombre }}</h1>
+    <p>Funciones: {{ bloque.funciones }}</p>
+    <p>Nombre del encargado: {{ bloque.nombre_encargado }}</p>
+    <!-- Otros campos del bloque... -->
+
+    <h2>Sitios relacionados:</h2>
+    <ul>
+    {% for sitio in sitios %}
+        <li>{{ sitio.nombre }}</li>
+        <!-- Otros campos del sitio... -->
+    {% endfor %}
+    </ul>
+{% endblock %}
