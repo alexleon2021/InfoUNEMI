@@ -7,7 +7,7 @@ class Sitio(models.Model):
     Bloques = models.ForeignKey('Bloque', on_delete=models.PROTECT, default="", blank= False)
     horario = models.CharField('Horario de atencion',max_length=100, blank= True)
     foto = models.URLField('foto',null = False ,blank= True)
-    gps = models.CharField(max_length=100, blank= False)
+    gps = models.CharField(max_length=100, blank= True)
     
     class Meta:
         verbose_name = 'Sitio'
