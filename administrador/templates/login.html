@@ -15,20 +15,32 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
-            <h2 class="title">Inciar Sesión</h2>
-            <div class="input-field">
+          <form action="#" class="sign-in-form" method="post">
+            {% csrf_token %}
+            <h2 class="title">Iniciar sesión</h2>
+            <div class="input-field" >
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <!--  <input type="text" placeholder="Nombre de usuario: "/>  -->
+              <label for="{{ form.username.id_for_label }}" >{{ form.username }}</label>
+              
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <!--   <input type="text" placeholder="Contraseña: "/> -->
+              <label for="{{ form.password.id_for_label }}">{{ form.password }}</label>
             </div>
-            <input type="submit" value="Login" class="btn solid" />
+            
+            <div>
+              {{ form.non_field_errors }} <!-- Muestra errores de validación no asociados a campos específicos -->
+            </div>
+            
+            <input type="submit" value="Iniciar sesión" class="btn solid" />
+            
             <p class="social-text">
               ¿Has olvidado tu contraseña? <a href="/reestablecer">Recuperar contraseña</a>
             </p>
+
+          
             <!-- <input type="submit"  value="Recuperar contraseña" class="btn solid" /> -->
             <!-- <div class="social-media"> 
               <a href="#" class="social-icon">

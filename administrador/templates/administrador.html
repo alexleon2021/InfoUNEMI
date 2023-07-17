@@ -1,0 +1,20 @@
+<h1>Lista de bloques</h1>
+
+    <ul>
+      {% for bloque in bloques %}
+        <li>
+          <h2>{{ bloque.nombre }}</h2>
+          <p>Funciones: {{ bloque.funciones }}</p>
+          <!-- Otros campos del bloque... -->
+          
+          <a href="{% url 'bloque' bloque_id=bloque.id %}" class="btn">Ver Bloque</a>
+          <a href="{% url 'editar_bloque' bloque_id=bloque.id %}" class="btn">Editar Bloque</a>
+
+        </li>
+      {% endfor %}
+    </ul>
+
+<div>
+    <h2>Salir</h2>
+    <a class="dropdown-item preview-item" href="/logout">Cerrar Sesión</a>
+</div>

@@ -24,6 +24,7 @@ class Bloque(models.Model):
     numero_planta = models.IntegerField('numero de plantas')
     horario_bloque = models.CharField('Horarios',max_length=100)
     descripcion = models.TextField(null = True, blank=True)
+    gps = models.CharField(max_length=100, blank=True, null = False)
 
 
     class Meta:
