@@ -25,14 +25,8 @@ class Bloque(models.Model):
         # Verificar si el bloque tiene un número válido de plantas
         if self.numero_planta > 0:
             for numero_planta in range(1, self.numero_planta + 1):
-                # Crear un objeto Sitio para cada planta del bloque
-                sitio = Sitio(
-                    nombre=f"Aula {numero_planta}",
-                    bloque=self,
-                    planta=Planta.objects.get_or_create(numero_planta=numero_planta, bloque=self)[0],
-                    # Agrega otros campos necesarios para Sitio, como horario, foto, etc.
-                )
-                sitio.save()
+                # Crear una nueva Planta para cada planta del bloque
+                Planta.objects.create(numero_planta=numero_planta, bloque=self)
 
 class Sitio(models.Model):
     id = models.AutoField(primary_key= True)
