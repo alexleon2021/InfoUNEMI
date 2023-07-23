@@ -22,197 +22,53 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-
 </head>
 
-<body >
-
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img class="img-fluid w-25 h-25" src="./InfoUnemi.svg"
-                    alt="logo">
-
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarScroll">
-                <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; background-color: #002334; text-align: center; border-radius: 0px 0px 20px 20px;">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white fw-bold" aria-current="page" href="./Home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-bold" href="#">Bloques</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle link-buscar" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </a>
-                        <ul class="dropdown-menu btn-buscar position-relative  ps-2  pe-2">
-                            <li>
-                                <form class="d-flex" role="search">
-                                    <input class="form-control " type="search" placeholder="¿Que deseas Buscar?"
-                                        aria-label="Search">
-                                    <button class="btn btn-success" type="submit">Buscar</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-                
-            </div>
+{% block header %}
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img class="img-fluid w-25 h-25" src="{% static 'svg/InfoUnemi.svg' %}"
+                alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarScroll">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; background-color: #002334; text-align: center; border-radius: 0px 0px 20px 20px;">
+                <li class="nav-item">
+                    <a class="nav-link active text-white fw-bold" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                {% block botonbloques %}
+                <li class="nav-item">
+                    <a class="nav-link text-white fw-bold" href="{% url 'listadoBloques' %}">Bloques</a>
+                </li>
+                {% endblock botonbloques %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link-buscar" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </a>
+                    <ul class="dropdown-menu btn-buscar position-relative  ps-2  pe-2">
+                        <li>
+                            <form class="d-flex" role="search">
+                                <input class="form-control " type="search" placeholder="¿Que deseas Buscar?"
+                                    aria-label="Search">
+                                <button class="btn btn-success" type="submit">Buscar</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-    </nav>
-    
-    <article>
-        <section class="container-fluid mx-auto w-100">
-            <div class="imagen-fondo">
-                <img class='img-fluid ' src="./bloque.jpg" alt="">
-            </div>
-            <div class="neu col-lg-8 col-10 text-center container-fluid mt-5">
-                <h1>{{ bloque.nombre }} </h1>
-                <h4 class="mb-5">La información referente al mismo se presentará en la parte de abajo</h4>
+    </div>
+</nav>
+{% endblock header %}    
 
 
-                <div class="accordion row col-md-8 mx-auto pb-5" id="accordionExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Primer Nivel
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam numquam et nam
-                                    officia dignissimos nobis porro. Quo qui vitae blanditiis assumenda fugit,
-                                    voluptatum possimus quasi eos aperiam sapiente dolor architecto!
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo porro a adipisci
-                                    aperiam similique quae minus deserunt labore praesentium. Non debitis odio numquam
-                                    minus minima commodi obcaecati quasi provident dolorem!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum odio facilis ullam
-                                    voluptate eos in sed ipsa eligendi eveniet, debitis itaque modi omnis nesciunt
-                                    architecto officia esse eaque delectus tempore.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Segundo Nivel
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam numquam et nam
-                                    officia dignissimos nobis porro. Quo qui vitae blanditiis assumenda fugit,
-                                    voluptatum possimus quasi eos aperiam sapiente dolor architecto!
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo porro a adipisci
-                                    aperiam similique quae minus deserunt labore praesentium. Non debitis odio numquam
-                                    minus minima commodi obcaecati quasi provident dolorem!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum odio facilis ullam
-                                    voluptate eos in sed ipsa eligendi eveniet, debitis itaque modi omnis nesciunt
-                                    architecto officia esse eaque delectus tempore.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Tercer Nivel
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam numquam et nam
-                                    officia dignissimos nobis porro. Quo qui vitae blanditiis assumenda fugit,
-                                    voluptatum possimus quasi eos aperiam sapiente dolor architecto!
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo porro a adipisci
-                                    aperiam similique quae minus deserunt labore praesentium. Non debitis odio numquam
-                                    minus minima commodi obcaecati quasi provident dolorem!
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum odio facilis ullam
-                                    voluptate eos in sed ipsa eligendi eveniet, debitis itaque modi omnis nesciunt
-                                    architecto officia esse eaque delectus tempore.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+{% block content %}
 
-        <section class="container-fluid mt-5 d-flex justify-content-center pb-5 col-lg-8 col-10">
-            <iframe class="mx-auto"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.037244707276!2d-79.60228357783576!3d-2.1501972293270137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d47553294837b%3A0x62e428bde6665b6!2sUniversidad%20estatal%20de%20milagro!5e0!3m2!1ses-419!2sec!4v1689532882534!5m2!1ses-419!2sec"
-                width="900" height="550" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
-
-
-        <section class="container-fluid mx-auto mt-5 row col-lg-8 col-10 pb-5">
-            <h1 class="text-center">Aulas</h1>
-            <div class="list-group mt-5">
-                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Planta Baja</h5>
-                        <small>Información</small>
-                    </div>
-                    <p class="mb-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus facilis porro ad
-                        dolores commodi rem omnis error hic dolorum? Distinctio necessitatibus quibusdam saepe veniam
-                        sed, officiis illo repudiandae! Nisi, blanditiis?</p>
-                    <small>Info</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Segundo Nivel</h5>
-                        <small class="text-body-secondary">Información</small>
-                    </div>
-                    <p class="mb-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus facilis porro ad
-                        dolores commodi rem omnis error hic dolorum? Distinctio necessitatibus quibusdam saepe veniam
-                        sed, officiis illo repudiandae! Nisi, blanditiis?</p>
-                    <small class="text-body-secondary">Info</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Tercer Nivel</h5>
-                        <small class="text-body-secondary">Información</small>
-                    </div>
-                    <p class="mb-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus facilis porro ad
-                        dolores commodi rem omnis error hic dolorum? Distinctio necessitatibus quibusdam saepe veniam
-                        sed, officiis illo repudiandae! Nisi, blanditiis?</p>
-                    <small class="text-body-secondary">Info</small>
-                </a>
-            </div>
-        </section>
-
-    </article>
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Script bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-    <!-- link de iconos -->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
+{% endblock %}
 
 </html>

@@ -1,20 +1,89 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 {{ bloque.nombre }} 
 {% endblock %}
 
-{% block contenido %}
-    <h1>{{ bloque.nombre }}</h1>
-    <p>Funciones: {{ bloque.funciones }}</p>
-    <p>Nombre del encargado: {{ bloque.nombre_encargado }}</p>
-    <!-- Otros campos del bloque... -->
+{% block content %}
+<body >
+    <article>
 
-    <h2>Sitios relacionados:</h2>
-    <ul>
-    {% for sitio in sitios %}
-        <li>{{ sitio.nombre }}</li>
-        <!-- Otros campos del sitio... -->
-    {% endfor %}
-    </ul>
+        <!--Sección de la Información General del Bloque-->
+        <section class="container-fluid mx-auto w-100">
+            <div class="imagen-fondo">
+                <img class='img-fluid' src="{% static 'img/edificioNaranja.jpg' %}" alt="">
+            </div>
+            <div class="neu col-lg-8 col-10 text-center container-fluid mt-5">
+                <h1>{{ bloque.nombre }} </h1>
+                <h6 class="mb-5">La información referente al mismo se presentará en la parte de abajo</h6>
+
+                <h4> {{ bloque.descripcion }}</h4>
+                
+                <div>
+                    <h4>Funciones Principales:</h4>
+                    <p> {{ bloque.funciones }}</p>
+
+                    <h4>Nombre del encargado:</h4>
+                    <p> {{ bloque.nombre_encargado }}</p>
+
+                    <h4>Horarios de Funcionaminto:</h4>
+                    <p> {{ bloque.horario_bloque}}</p>
+                    <!-- Otros campos del bloque... -->
+                
+                </div>
+            </div>
+            <br>
+
+        </section>
+
+        <section class="container-fluid mx-auto mt-5 row col-lg-8 col-10 pb-5">
+            <h1 class="text-center">Sitios</h1>
+            <div class="list-group mt-5">
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Planta Baja</h5>
+                    </div>
+
+                    <div>
+                        {% for sitio in sitios %}
+                        <ul>
+                            <li>{{ sitio.nombre }} </li>
+                        </ul>
+                        <!-- Otros campos del sitio... -->
+                        {% endfor %}
+
+                    </div>
+                    <p class="mb-1">Lorem, ipsum dolor sit amet</p>
+                    <small>Info</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Segundo Nivel</h5>
+                        <small class="text-body-secondary">Información</small>
+                    </div>
+                    <p class="mb-1">Lorem, ipsum dolor sit </p>
+                    <small class="text-body-secondary">Info</small>
+                </a>
+            </div>
+        </section>
+
+
+        <!--Sección del Mapa-->
+        <section class="container-fluid mt-5 d-flex justify-content-center pb-5 col-lg-8 col-10">
+            <iframe class="mx-auto"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d996.7519491256546!2d-79.6033360809088!3d-2.150701827784028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d465523c50e37%3A0x70a5136e6272715f!2sUNEMI%20-%20Universidad%20Estatal%20de%20Milagro!5e0!3m2!1ses-419!2sec!4v1690132735455!5m2!1ses-419!2sec"                 width="900" height="550" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+    </article>
+
+    <!-- Script bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <!-- link de iconos -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
 {% endblock %}

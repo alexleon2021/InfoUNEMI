@@ -41,7 +41,7 @@ def signout(request):
     return redirect('home')
 
 @login_required
-def adminsitrador(request):
+def administrador(request):
     bloques = Bloque.objects.all()
     return render(request, 'administrador.html', {'bloques': bloques})
 
