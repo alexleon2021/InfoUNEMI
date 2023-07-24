@@ -24,9 +24,18 @@ class Bloque(models.Model):
         
         # Verificar si el bloque tiene un número válido de plantas
         if self.numero_planta > 0:
-            for numero_planta in range(1, self.numero_planta + 1):
-                # Crear una nueva Planta para cada planta del bloque
-                Planta.objects.create(numero_planta=numero_planta, bloque=self)
+            # Obtener las plantas existentes asociadas a este bloque
+            plantas_existentes = Planta.objects.filter(bloque=self)
+
+            if self.numero_planta > plantas_existentes.count():
+                # Crear plantas adicionales si se ha aumentado el número de plantas
+                for numero_planta in range(plantas_existentes.count() + 1, self.numero_planta + 1):
+                    Planta.objects.create(numero_planta=numero_planta, bloque=self)
+            elif self.numero_planta < plantas_existentes.count():
+                # Eliminar plantas si se ha reducido el número de plantas
+                plantas_excedentes = plantas_existentes[self.numero_planta:]
+                for planta in plantas_excedentes:
+                    planta.delete()
 
 class Sitio(models.Model):
     id = models.AutoField(primary_key= True)
