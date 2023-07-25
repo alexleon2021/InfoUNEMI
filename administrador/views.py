@@ -33,7 +33,7 @@ def register(request):
 
     return render(request, 'registrarse.html', {'form': form})
 
-def recuperarC(request):
+def recuperar(request):
     return render(request, 'recuperar.html')
 
 def signout(request):
@@ -58,3 +58,24 @@ def editar_bloque(request, bloque_id):
     return render(request, 'editar_bloque.html', {'form': form})
 
 
+#restablecer
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+
+# Vista personalizada para enviar correos de restablecimiento de contraseña
+class MyPasswordResetView(PasswordResetView):
+    template_name = 'reestablecer/reset_recuperar.html'
+    success_url = reverse_lazy('password_reset_done')
+    email_template_name = 'reestablecer/password_reset_email.html'
+    subject_template_name = 'reestablecer/password_reset_subject.txt'
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'reestablecer/reset_enviado.html'
+
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'reestablecer/reset_nueva.html'
+    success_url = reverse_lazy('password_reset_complete')
+
+class MyPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'reestablecer/reset_confirmacion.html'

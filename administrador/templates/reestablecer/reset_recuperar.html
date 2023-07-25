@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Restablecer Contraseña</title>
+{% endblock title %}
+
+{% block content %}
+  <form method="post" action="{% url 'password_reset' %}">
+    <div>
+      <h2>Restablecer contraseña</h2>
+      <p>Ingresa la dirección de correo electrónico asociada con tu cuenta y te enviaremos un enlace para restablecer tu contraseña.</p>
+    </div>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn header-btn">Enviar correo electrónico</button>
+  </form>
+{% endblock %}
