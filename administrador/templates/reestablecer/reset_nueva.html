@@ -17,8 +17,10 @@
         <img class="img-fluid wave2" src="./wave2.svg" alt="wave2">
         <div class="d-flex justify-content-center align-items-center flex-wrap flex-row-reverse">
             <img class="w-25 h-50 img-fluid col-lg-6 col-md-6 col-12 shiba" src="./shiba.png" alt="shiba">
-            <form action="{% url 'password_reset_complete' %}" method="get">
+            <form method="post">
                 {% csrf_token %}
+                <input type="hidden" name="uidb64" value="{{ uidb64 }}">
+                <input type="hidden" name="token" value="{{ token }}">
                 <h1 class="text-center">Restablecer Contraseña</h1>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Ingresa nueva contraseña</label>
@@ -31,6 +33,7 @@
                 </div>
                 <button type="submit" class="btn btn-warning">Restablecer</button>
             </form>
+            
         </div>
     </main>
     

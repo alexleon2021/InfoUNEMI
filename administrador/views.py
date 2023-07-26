@@ -80,6 +80,7 @@ class MyPasswordResetConfirmView(PasswordResetConfirmView):
 class MyPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'reestablecer/reset_confirmacion.html'
 
+
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import UserRegistrationForm, LoginForm, BloqueForm
 from django.contrib.auth import authenticate, login as auth_login, logout
@@ -99,9 +100,19 @@ class MyPasswordResetView(PasswordResetView):
 
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.urls import reverse_lazy
+from django.contrib import messages
 
 class MyPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'reestablecer/reset_nueva.html'
     success_url = reverse_lazy('password_reset_complete')
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Contraseña restablecida con éxito! Ahora puedes iniciar sesión con tu nueva contraseña.')
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 
