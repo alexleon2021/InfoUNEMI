@@ -1,8 +1,11 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import UserRegistrationForm, LoginForm, BloqueForm
 from django.contrib.auth import authenticate, login as auth_login, logout
+from django.urls import reverse_lazy
 from sitios.models import Bloque, Sitio
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+
 
 # Create your views here.
 def user_login(request):
@@ -58,12 +61,6 @@ def editar_bloque(request, bloque_id):
     return render(request, 'editar_bloque.html', {'form': form})
 
 
-#restablecer
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-
-# Vista personalizada para enviar correos de restablecimiento de contraseña
 class MyPasswordResetView(PasswordResetView):
     template_name = 'reestablecer/reset_recuperar.html'
     success_url = reverse_lazy('password_reset_done')
@@ -79,40 +76,3 @@ class MyPasswordResetConfirmView(PasswordResetConfirmView):
 
 class MyPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'reestablecer/reset_confirmacion.html'
-
-
-from django.shortcuts import get_object_or_404, render, redirect
-from .forms import UserRegistrationForm, LoginForm, BloqueForm
-from django.contrib.auth import authenticate, login as auth_login, logout
-from sitios.models import Bloque, Sitio
-from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
-
-# Resto de tus vistas ...
-
-# Nueva vista para enviar correos de restablecimiento de contraseña
-class MyPasswordResetView(PasswordResetView):
-    template_name = 'reestablecer/reset_recuperar.html'
-    success_url = reverse_lazy('password_reset_done')
-    email_template_name = 'reestablecer/password_reset_email.html'
-    subject_template_name = 'reestablecer/password_reset_subject.txt'
-
-
-from django.contrib.auth.views import PasswordResetConfirmView
-from django.urls import reverse_lazy
-from django.contrib import messages
-
-class MyPasswordResetConfirmView(PasswordResetConfirmView):
-    template_name = 'reestablecer/reset_nueva.html'
-    success_url = reverse_lazy('password_reset_complete')
-
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            form.save()
-            messages.success(request, '¡Contraseña restablecida con éxito! Ahora puedes iniciar sesión con tu nueva contraseña.')
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-
