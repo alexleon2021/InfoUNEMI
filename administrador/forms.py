@@ -19,3 +19,5 @@ class BloqueForm(forms.ModelForm):
     class Meta:
         model = Bloque
         fields = '__all__'
+
+
