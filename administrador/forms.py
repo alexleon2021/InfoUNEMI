@@ -15,9 +15,25 @@ class UserRegistrationForm(UserCreationForm):
         model = CustomUser
         fields = ('username', 'email', 'password1', 'password2')
 
+
 class BloqueForm(forms.ModelForm):
     class Meta:
         model = Bloque
         fields = '__all__'
 
+# forms.py
+
+
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
+from sitios.models import Bloque, Sitio
+
+class BloqueForm(forms.ModelForm):
+    class Meta:
+        model = Bloque
+        fields = '__all__'
+        widgets = {
+            'imagen': forms.FileInput(attrs={'enctype': 'multipart/form-data'})  # Asegúrate de incluir esto
+        }
 

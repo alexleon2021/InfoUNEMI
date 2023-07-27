@@ -17,3 +17,11 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', MyPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', MyPasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
+
+# urls.py
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

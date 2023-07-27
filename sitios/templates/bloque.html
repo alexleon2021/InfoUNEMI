@@ -12,7 +12,7 @@
         <!--Sección de la Información General del Bloque-->
         <section class="container-fluid mx-auto w-200">
             <div class="imagen-fondo">
-                <img class='img-fluid' src="{% static 'img/BloqueK.jpeg' %}" alt="">
+                <img class='img-fluid' src="{% if bloque.imagen %}{{ bloque.imagen.url }}{% else %}{% static 'img/default.jpg' %}{% endif %}" alt="">
             </div>
             <div class="neu col-lg-8 col-10 text-center container-fluid mt-5">
                 <h1>{{ bloque.nombre }} </h1>

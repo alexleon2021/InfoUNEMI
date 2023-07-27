@@ -1,15 +1,15 @@
 from django.db import models
-#creacion de los modelos 
 
 class Bloque(models.Model):
-    id = models.AutoField(primary_key= True)
-    nombre = models.CharField('Nombre del bloque',max_length=100,null = False ,blank= False)
-    funciones = models.CharField('Funciones del Bloque',max_length=100)
-    nombre_encargado = models.CharField('Nombre del encargado',max_length=100, blank= True)
-    numero_planta = models.IntegerField('numero de plantas')
-    horario_bloque = models.CharField('Horarios',max_length=100)
-    descripcion = models.TextField(null = True, blank=True)
-    gps = models.CharField(max_length=100, blank=True, null = False)
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField('Nombre del bloque', max_length=100, null=False, blank=False)
+    funciones = models.CharField('Funciones del Bloque', max_length=100)
+    nombre_encargado = models.CharField('Nombre del encargado', max_length=100, blank=True)
+    numero_planta = models.IntegerField('Número de plantas')
+    horario_bloque = models.CharField('Horarios', max_length=100)
+    descripcion = models.TextField(null=True, blank=True)
+    gps = models.CharField(max_length=100, blank=True, null=False)
+    imagen = models.ImageField(upload_to='bloque_imagenes/', null=True, blank=True)
 
 
     class Meta:
@@ -45,6 +45,7 @@ class Sitio(models.Model):
     horario = models.CharField('Horario de atencion',max_length=100, blank= True)
     foto = models.URLField('foto',null = False ,blank= True)
     gps = models.CharField(max_length=100, blank= True)
+    planta = models.ForeignKey('Planta', on_delete=models.CASCADE, default="", blank=False, null=True)
     
     class Meta:
         verbose_name = 'Sitio'
@@ -83,3 +84,6 @@ class Planta(models.Model):
         
         # Llamar al método save() del modelo padre para guardar los cambios
         super(Planta, self).save(*args, **kwargs)
+
+
+
