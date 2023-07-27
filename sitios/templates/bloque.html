@@ -39,17 +39,18 @@
 
         <section class="container-fluid mx-auto mt-5 row col-lg-8 col-10 pb-5">
             <h1 class="text-center">Sitios</h1>
-            <div class="list-group mt-5">
-                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+            <!-- Agregar el campo de búsqueda -->
+            <input type="text" id="search-input" class="form-control mt-3" placeholder="Buscar aula...">
+            <div class="list-group mt-3" id="aulas-list">
+                <!-- Aquí se mostrarán los resultados de búsqueda -->
+                {% for sitio in sitios %}
+                <a href="#" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Planta Baja</h5>
+                        <h5 class="mb-1">{{ sitio.nombre }}</h5>
                     </div>
-
-                    <div>
-                        {% for sitio in sitios %}
-                        <ul>
-                            <li>{{ sitio.nombre }} </li>
-                        </ul>
+                    <ul>
+                        <li>{{ sitio.nombre }}</li>
+                    </ul>
                         <!-- Otros campos del sitio... -->
                         {% endfor %}
 
@@ -85,5 +86,31 @@
     <!-- link de iconos -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <script>
+        // Obtener la lista de aulas
+        const aulasList = document.getElementById('aulas-list');
+        const aulasItems = aulasList.getElementsByClassName('list-group-item');
+    
+        // Obtener el campo de búsqueda
+        const searchInput = document.getElementById('search-input');
+    
+        // Agregar evento de escucha para detectar cambios en el campo de búsqueda
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.toLowerCase();
+            for (let i = 0; i < aulasItems.length; i++) {
+                const aulaNombre = aulasItems[i].querySelector('h5').textContent.toLowerCase();
+                if (aulaNombre.includes(searchTerm)) {
+                    aulasItems[i].style.display = 'block';
+                } else {
+                    aulasItems[i].style.display = 'none';
+                }
+            }
+        });
+    </script>
+    
+
+
 </body>
 {% endblock %}
