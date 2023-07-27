@@ -1,3 +1,5 @@
+##modelo de sitios
+
 from django.db import models
 
 class Bloque(models.Model):
