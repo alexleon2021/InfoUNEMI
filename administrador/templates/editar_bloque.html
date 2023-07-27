@@ -4,7 +4,7 @@
   {% csrf_token %}
   {{ form.as_p }}
   {% if form.instance.imagen %}
+  <button type="submit">Guardar</button>
     <img src="{{ form.instance.imagen.url }}" alt="Imagen actual">
   {% endif %}
-  <button type="submit">Guardar</button>
 </form>
