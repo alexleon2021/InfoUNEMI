@@ -155,25 +155,6 @@ img{
     border-radius: 5px;
     box-shadow: 0px 3px 5px rgba(15, 15, 15, .15);
     vertical-align: middle;
-  }
-
-.box__copyright{
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
-    padding: 0px 40px;
-}
-
-.box__copyright p{
-    margin-top: 20px;
-    color: #0f0101;
-}
-
-.box__copyright {
-    margin-top: 80px;
-    height: 80px;
-
-
 }
 
 .links ul{
@@ -204,8 +185,46 @@ img{
     transition: all 350ms ease 
 
 }
-hr.footer{
-    margin-top: 60px;
-    height: 0.5px;
-    background-color: #b9a3a3;
+
+/* Estilos para el texto "InfoUNEMI" */
+.h1 {
+    font-size: 30px;
+    margin: 0;
+    display: inline;
 }
+
+/* Estilos para el texto "Info" en naranja */
+.orange {
+    color: #FFA500;
+}
+
+/* Estilos para el texto "UNEMI" en azul */
+.blue {
+    color: #1c3247;
+}
+
+/* Estilos generales para el footer */
+footer {
+    background-color: #1c3247;
+    color: #fff;
+    padding: 8px 0;
+    text-align: center;
+}
+
+/* Estilos para el texto del copyright */
+.box__copyright {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Estilos para el color de texto */
+footer p, footer b {
+    color: #fff;
+}
+
+/* Estilos para ocultar la línea horizontal */
+hr.footer {
+    display: none;
+}
+
+

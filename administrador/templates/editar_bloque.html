@@ -1,10 +1,79 @@
-<!-- editar_bloque.html -->
+{% extends "base.html" %}
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if form.instance.imagen %}
-  <button type="submit">Guardar</button>
-    <img src="{{ form.instance.imagen.url }}" alt="Imagen actual">
-  {% endif %}
-</form>
+{% block title %}
+Editar Bloque - Administrador
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>Editar Bloque</h1>
+  <form method="post" enctype="multipart/form-data" style="max-width: 500px; margin: auto;">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="{{ form.nombre.id_for_label }}" class="form-label" style="font-size: 14px;">Nombre:</label>
+      {{ form.nombre }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.descripcion.id_for_label }}" class="form-label" style="font-size: 14px;">Descripción:</label>
+      {{ form.descripcion }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.funciones.id_for_label }}" class="form-label" style="font-size: 14px;">Funciones:</label>
+      {{ form.funciones }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.nombre_encargado.id_for_label }}" class="form-label" style="font-size: 14px;">Encargado:</label>
+      {{ form.nombre_encargado }}
+    </div>
+    <div class="mb-3">
+      <label for="{{ form.horario_bloque.id_for_label }}" class="form-label" style="font-size: 14px;">Horario:</label>
+      {{ form.horario_bloque }}
+    </div>
+    <div class="mb-3">
+      {% if form.imagen.value %}
+        <img src="{{ form.instance.imagen.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 200px;">
+      {% endif %}
+      <label for="{{ form.imagen.id_for_label }}" class="form-label" style="font-size: 14px;">Imagen:</label>
+      {{ form.imagen }}
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="{% url 'administrador' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<style>
+  /* Estilos para los campos */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Estilos para la imagen */
+  .img-thumbnail {
+    border-radius: 0.3rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Estilos para los botones */
+  .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }
+</style>
+{% endblock %}
