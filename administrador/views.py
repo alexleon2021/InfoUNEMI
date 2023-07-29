@@ -1,8 +1,11 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import UserRegistrationForm, LoginForm, BloqueForm
 from django.contrib.auth import authenticate, login as auth_login, logout
+from django.urls import reverse_lazy
 from sitios.models import Bloque, Sitio
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
+
 
 # Create your views here.
 def user_login(request):
@@ -33,7 +36,7 @@ def register(request):
 
     return render(request, 'registrarse.html', {'form': form})
 
-def recuperarC(request):
+def recuperar(request):
     return render(request, 'recuperar.html')
 
 def signout(request):
@@ -41,7 +44,7 @@ def signout(request):
     return redirect('home')
 
 @login_required
-def adminsitrador(request):
+def administrador(request):
     bloques = Bloque.objects.all()
     return render(request, 'administrador.html', {'bloques': bloques})
 
@@ -58,3 +61,35 @@ def editar_bloque(request, bloque_id):
     return render(request, 'editar_bloque.html', {'form': form})
 
 
+class MyPasswordResetView(PasswordResetView):
+    template_name = 'reestablecer/reset_recuperar.html'
+    success_url = reverse_lazy('password_reset_done')
+    email_template_name = 'reestablecer/password_reset_email.html'
+    subject_template_name = 'reestablecer/password_reset_subject.txt'
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'reestablecer/reset_enviado.html'
+
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'reestablecer/reset_nueva.html'
+    success_url = reverse_lazy('password_reset_complete')
+
+class MyPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'reestablecer/reset_confirmacion.html'
+
+
+##subirimagen
+from django.core.exceptions import ValidationError
+
+@login_required
+def editar_bloque(request, bloque_id):
+    bloque = get_object_or_404(Bloque, id=bloque_id)
+    if request.method == 'POST':
+        form = BloqueForm(request.POST, request.FILES, instance=bloque)
+        if form.is_valid():
+            # Save the form and handle the image
+            form.save()
+            return redirect('administrador')
+    else:
+        form = BloqueForm(instance=bloque)
+    return render(request, 'editar_bloque.html', {'form': form})

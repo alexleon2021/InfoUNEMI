@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,3 +126,14 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Cambia esto si utilizas un proveedor de correo diferente
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'infounemi.reset@gmail.com'
+EMAIL_HOST_PASSWORD = 'ggnwwwdaeuixrcek'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'sitios/media')
+# URL para acceder a los archivos multimedia en tu proyecto
+MEDIA_URL = '/media/'

@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tu Aplicación</title>
-  <link rel="stylesheet" href="--.css"> <!-- Agrega tu archivo de estilo CSS personalizado -->
+    <title>Registrarse</title>
 </head>
 <body>
-    <h2>Registro de usuario</h2>
-  <form method="post">
-    {% csrf_token %}
-    <div>
-      <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>
-      {{ form.username }}
-    </div>
-    <div>
-      <label for="{{ form.email.id_for_label }}">Correo electrónico:</label>
-      {{ form.email }}
-    </div>
-    <div>
-      <label for="{{ form.password1.id_for_label }}">Contraseña:</label>
-      {{ form.password1 }}
-    </div>
-    <div>
-      <label for="{{ form.password2.id_for_label }}">Confirmar contraseña:</label>
-      {{ form.password2 }}
-    </div>
-    <button type="submit">Registrarse</button>
-  </form>
+    <h1>Registrarse</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
 </body>
 </html>
