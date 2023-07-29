@@ -38,30 +38,31 @@
         </section>
 
     <section class="container-fluid_ mx-auto mt-5 row col-lg-8 col-10 pb-5">
-    <h1 class="text-center">{{ bloque.nombre }}</h1>
-    <!-- Agregar el campo de búsqueda -->
-    <input type="text" id="search-input" class="form-control mt-3" placeholder="Buscar aula...">
-    <div class="list-group mt-3" id="aulas-list">
-        <!-- Aquí se mostrarán los resultados de búsqueda -->
-        {% for sitio in sitios %}
-        <div class="list-group-item list-group-item-action">
-            <button class="d-flex w-100 justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#sitio{{ sitio.id }}">
-                <h5 class="mb-1">{{ sitio.nombre }}</h5>
-                <i class="collapse-icon fas fa-chevron-down"></i>
-            </button>
-            <div id="sitio{{ sitio.id }}" class="collapse">
-                <ul>
-                    <li>{{ sitio.bloque }}</li>
-                    <li>{{ sitio.planta }}</li>
-                    <li>{{ sitio.horario }}</li>
-                    <li>{{ bloque.descripcion }}</li>
-                    <!-- Agrega otros campos del sitio que desees mostrar en el acordeón -->
-                </ul>
+        <h1 class="text-center">{{ bloque.nombre }}</h1>
+        <!-- Agregar el campo de búsqueda -->
+        <input type="text" id="search-input" class="form-control mt-3" placeholder="Buscar aula...">
+        <div class="list-group mt-3" id="aulas-list">
+            <!-- Aquí se mostrarán los resultados de búsqueda -->
+            {% for sitio in sitios %}
+            <div class="list-group-item list-group-item-action">
+                <button class="d-flex w-100 justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#sitio{{ sitio.id }}">
+                    <h5 class="mb-1">{{ sitio.nombre }}</h5>
+                    <i class="collapse-icon fas fa-chevron-down"></i>
+                </button>
+                <div id="sitio{{ sitio.id }}" class="collapse">
+                    
+                    <ul>
+                        <li>{{ sitio.bloque }}</li>
+                        <li>{{ sitio.planta }}</li>
+                        <li>{{ sitio.horario }}</li>
+                        <li>{{ bloque.descripcion }}</li>
+                        <!-- Agrega otros campos del sitio que desees mostrar en el acordeón -->
+                    </ul>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-</section>
+    </section>
 
 
         <!-- Agrega la siguiente línea dentro del <head> de tu documento HTML para incluir Font Awesome -->
