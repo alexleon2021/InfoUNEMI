@@ -55,12 +55,16 @@
                         <li>{{ sitio.planta }}</li>
                         <li>Horarios:  {{ sitio.horario }}</li>
                         <li>Descripcion:  {{ sitio.descripcion }}</li>
+                        {% if sitio.nombre_director %}
+                            <li>Director(a): {{ sitio.nombre_director }}</li>
+                        {% else %}
+                            <li>Director(a): No se ha registrado aún.</li>
+                        {% endif %}
                         {% if sitio.imagen %}
                           <li>
                             <img class="img-fluid imagen-pequena" src="{{ sitio.imagen.url }}" alt="{{ sitio.nombre }}">
                           </li>
                         {% endif %}
-                        <!-- Agrega otros campos del sitio que desees mostrar en el acordeón -->
                     </ul>
                 </div>
             </div>

@@ -49,6 +49,7 @@ class Sitio(models.Model):
     gps = models.CharField(max_length=100, blank= True)
     planta = models.ForeignKey('Planta', on_delete=models.CASCADE, default="", blank=False, null=True)
     descripcion = models.TextField('Descripción del Sitio', null=True, blank=True)
+    nombre_director = models.CharField('Nombre del Director', max_length=100, blank=True)
     
     class Meta:
         verbose_name = 'Sitio'
