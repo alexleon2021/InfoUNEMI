@@ -38,36 +38,145 @@
         </section>
 
         <section class="container-fluid mx-auto mt-5 row col-lg-8 col-10 pb-5">
-            <h1 class="text-center">Sitios</h1>
-            <!-- Agregar el campo de búsqueda -->
-            <input type="text" id="search-input" class="form-control mt-3" placeholder="Buscar aula...">
-            <div class="list-group mt-3" id="aulas-list">
-                <!-- Aquí se mostrarán los resultados de búsqueda -->
-                {% for sitio in sitios %}
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ sitio.nombre }}</h5>
-                    </div>
-                    <ul>
-                        <li>{{ sitio.nombre }}</li>
-                    </ul>
-                        <!-- Otros campos del sitio... -->
-                        {% endfor %}
-
-                    </div>
-                    <p class="mb-1">Lorem, ipsum dolor sit amet</p>
-                    <small>Info</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Segundo Nivel</h5>
-                        <small class="text-body-secondary">Información</small>
-                    </div>
-                    <p class="mb-1">Lorem, ipsum dolor sit </p>
-                    <small class="text-body-secondary">Info</small>
-                </a>
+    <h1 class="text-center">Sitios</h1>
+    <!-- Agregar el campo de búsqueda -->
+    <input type="text" id="search-input" class="form-control mt-3" placeholder="Buscar aula...">
+    <div class="list-group mt-3" id="aulas-list">
+        <!-- Aquí se mostrarán los resultados de búsqueda -->
+        {% for sitio in sitios %}
+        <div class="list-group-item list-group-item-action">
+            <button class="d-flex w-100 justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#sitio{{ sitio.id }}">
+                <h5 class="mb-1">{{ sitio.nombre }}</h5>
+                <i class="collapse-icon fas fa-chevron-down"></i>
+            </button>
+            <div id="sitio{{ sitio.id }}" class="collapse">
+                <ul>
+                    <li>{{ sitio.bloque }}</li>
+                    <li>{{ sitio.planta }}</li>
+                    <li>{{ sitio.horario }}</li>
+                    <li>{{ bloque.descripcion }}</li>
+                    <!-- Agrega otros campos del sitio que desees mostrar en el acordeón -->
+                </ul>
             </div>
-        </section>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+        <!-- Agrega la siguiente línea dentro del <head> de tu documento HTML para incluir Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+<style>
+  /* Estilos para el contenedor principal, los botones y el contenido oculto son los mismos */
+  .container-fluid,
+  .list-group-item button,
+  .collapse {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  /* Estilos para el título */
+  h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  /* Estilos para el campo de búsqueda */
+  #search-input {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ff8a00;
+    border-radius: 5px;
+  }
+
+  /* Estilos para los elementos de la lista */
+  .list-group-item {
+    background-color: #ff8a00;
+    border: 1px solid #ff8a00;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  /* Estilos para los botones que despliegan el acordeón */
+  .list-group-item button {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    background-color: #ff8a00;
+    border: none;
+    color: #fff; /* Texto en color blanco */
+    position: relative;
+  }
+
+  /* Cambio de color del texto del acordeón cuando el mouse está encima */
+  .list-group-item:hover button {
+    color: #fff; /* Cambia a color blanco cuando el mouse está encima */
+  }
+
+  /* Estilos para el contenido oculto del acordeón */
+  .collapse {
+    display: none; /* Oculta el contenido desplegable por defecto */
+  }
+
+  /* Mostrar el contenido desplegable cuando el elemento está activo */
+  .list-group-item.active .collapse {
+    display: block;
+  }
+
+  .collapse {
+        padding: 10px;
+        background-color: #002334;
+        border: 1px solid #002334;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    /* Estilos para los elementos de la lista dentro del acordeón */
+    .collapse ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .collapse ul li {
+        margin-bottom: 5px;
+    } 
+
+  /* Estilos para el icono de despliegue (flecha hacia abajo) */
+  .collapse-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease; /* Transición suave del icono */
+  }
+
+  /* Estilos para el icono cuando el acordeón está desplegado (flecha hacia arriba) */
+  .list-group-item.active .collapse-icon {
+    transform: translateY(-50%) rotate(180deg);
+  }
+</style>
+
+<script>
+  // JavaScript para controlar el clic y agregar/quitar la clase 'active'
+  document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.list-group-item button');
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const parent = this.closest('.list-group-item');
+        parent.classList.toggle('active');
+      });
+    });
+  });
+</script>
+
+          
+          
 
 
         <!--Sección del Mapa-->
