@@ -51,9 +51,15 @@
                 </button>
                 <div id="sitio{{ sitio.id }}" class="collapse">                  
                     <ul>
+                      <li>{{ sitio.nombre }}</li>
                         <li>{{ sitio.planta }}</li>
                         <li>Horarios:  {{ sitio.horario }}</li>
-                        <li>Descripcion:  {{ bloque.descripcion }}</li>
+                        <li>Descripcion:  {{ sitio.descripcion }}</li>
+                        {% if sitio.imagen %}
+                          <li>
+                            <img class="img-fluid imagen-pequena" src="{{ sitio.imagen.url }}" alt="{{ sitio.nombre }}">
+                          </li>
+                        {% endif %}
                         <!-- Agrega otros campos del sitio que desees mostrar en el acordeón -->
                     </ul>
                 </div>
@@ -67,6 +73,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 <style>
+
+  .imagen-pequena {
+    max-width: 250px; /* Máximo ancho de 100px */
+    max-height: 250px; /* Máxima altura de 100px */
+    border-radius: 5px; /* Opcional: agregar esquinas redondeadas */
+  }
+
   /* Estilos para el contenedor principal, los botones y el contenido oculto son los mismos */
   .container-fluid_ {
     background-color: #f7f7f7;
@@ -210,7 +223,7 @@
                 if (aulaNombre.includes(searchTerm)) {
                     aulasItems[i].style.display = 'block';
                 } else {
-                    aulasItems[i].style.display = 'none';
+                    aulasItems[i].style.display = 'Sin informacion';
                 }
             }
         });

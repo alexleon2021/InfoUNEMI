@@ -45,9 +45,10 @@ class Sitio(models.Model):
     bloque = models.ForeignKey('Bloque', on_delete=models.PROTECT, default="", blank= False)
     planta = models.ForeignKey('Planta', on_delete=models.PROTECT, default="", blank=False, null=True)
     horario = models.CharField('Horario de atencion',max_length=100, blank= True)
-    foto = models.URLField('foto',null = False ,blank= True)
+    imagen = models.ImageField(upload_to='bloque_imagenes/', null=True, blank=True)
     gps = models.CharField(max_length=100, blank= True)
     planta = models.ForeignKey('Planta', on_delete=models.CASCADE, default="", blank=False, null=True)
+    descripcion = models.TextField('Descripción del Sitio', null=True, blank=True)
     
     class Meta:
         verbose_name = 'Sitio'
