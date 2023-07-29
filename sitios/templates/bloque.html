@@ -49,13 +49,11 @@
                     <h5 class="mb-1">{{ sitio.nombre }}</h5>
                     <i class="collapse-icon fas fa-chevron-down"></i>
                 </button>
-                <div id="sitio{{ sitio.id }}" class="collapse">
-                    
+                <div id="sitio{{ sitio.id }}" class="collapse">                  
                     <ul>
-                        <li>{{ sitio.bloque }}</li>
                         <li>{{ sitio.planta }}</li>
-                        <li>{{ sitio.horario }}</li>
-                        <li>{{ bloque.descripcion }}</li>
+                        <li>Horarios:  {{ sitio.horario }}</li>
+                        <li>Descripcion:  {{ bloque.descripcion }}</li>
                         <!-- Agrega otros campos del sitio que desees mostrar en el acordeón -->
                     </ul>
                 </div>
