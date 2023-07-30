@@ -175,19 +175,19 @@
   }
 </style>
 
-<script>
-  // JavaScript para controlar el clic y agregar/quitar la clase 'active'
-  document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.list-group-item button');
+      <script>
+        // JavaScript para controlar el clic y agregar/quitar la clase 'active'
+        document.addEventListener('DOMContentLoaded', function () {
+          const buttons = document.querySelectorAll('.list-group-item button');
 
-    buttons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        const parent = this.closest('.list-group-item');
-        parent.classList.toggle('active');
-      });
-    });
-  });
-</script>
+          buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+              const parent = this.closest('.list-group-item');
+              parent.classList.toggle('active');
+            });
+          });
+        });
+      </script>
 
           
           
@@ -221,16 +221,16 @@
     
         // Agregar evento de escucha para detectar cambios en el campo de búsqueda
         searchInput.addEventListener('input', function () {
-            const searchTerm = searchInput.value.toLowerCase();
-            for (let i = 0; i < aulasItems.length; i++) {
-                const aulaNombre = aulasItems[i].querySelector('h5').textContent.toLowerCase();
-                if (aulaNombre.includes(searchTerm)) {
-                    aulasItems[i].style.display = 'block';
-                } else {
-                    aulasItems[i].style.display = 'Sin informacion';
-                }
+          const searchTerm = searchInput.value.toLowerCase();
+          for (let i = 0; i < aulasItems.length; i++) {
+            const aulaNombre = aulasItems[i].querySelector('h5').textContent.toLowerCase();
+            if (aulaNombre.includes(searchTerm)) {
+                aulasItems[i].style.display = 'block';
+          } else {
+                aulasItems[i].style.display = 'none'; // Set display to 'none' to hide the item
             }
-        });
+          }
+      });
     </script>
     
 
