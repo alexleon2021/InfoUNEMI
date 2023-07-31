@@ -93,3 +93,4 @@ def editar_bloque(request, bloque_id):
     else:
         form = BloqueForm(instance=bloque)
     return render(request, 'editar_bloque.html', {'form': form})
+

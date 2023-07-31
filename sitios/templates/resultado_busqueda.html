@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Resultados de búsqueda</h2>
+        {% if resultados %}
+            <ul class="list-group mt-3">
+                {% for bloque in resultados %}
+                    <li class="list-group-item">{{ bloque.nombre }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No se encontraron resultados para la búsqueda.</p>
+        {% endif %}
+    </div>
+{% endblock %}
